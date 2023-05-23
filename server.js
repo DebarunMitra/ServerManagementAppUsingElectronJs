@@ -22,8 +22,6 @@ app.get('/*', function (req, res) {
 server = http.createServer(app);
 
 server.listen(port, hostname);
-
-server.listen(port, networkHostname);
 server.on('listening', function() {
     console.log(`Localhost- http://${server.address().address}:${server.address().port}/ ` );
 });

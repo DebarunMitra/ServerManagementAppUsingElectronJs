@@ -29,7 +29,7 @@ function createWindow() {
 
 function startServer() {
   console.log('startServer called');
-  serverProcess = spawn('node', ['network-server.js',]);
+  serverProcess = spawn('node', ['network-server.js']);
 
   serverProcess.stdout.on('data', (data) => {
     // Display the server output in the GUI
