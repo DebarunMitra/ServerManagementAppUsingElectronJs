@@ -29,23 +29,20 @@ function createWindow() {
 
 function startServer() {
   console.log('startServer called');
-  serverProcess = spawn('node', ['server.js']);
+  serverProcess = spawn('node', ['network-server.js',]);
 
   serverProcess.stdout.on('data', (data) => {
-    console.log('data', data);
     // Display the server output in the GUI
     mainWindow.webContents.send('server-output', data.toString());
   });
 
   serverProcess.on('close', (code) => {
     // Server process has exited
-    console.log('close', code);
     mainWindow.webContents.send('server-closed', code);
   });
 
   serverProcess.on('error', (err) => {
     // Handle server process error
-    console.error('Server process error:', err);
     mainWindow.webContents.send('server-error', err.message);
   });
 }
@@ -57,7 +54,6 @@ function stopServer() {
 
     serverProcess.on('exit', (code, signal) => {
       // Server process has exited
-      console.log('Server process exited with code:', code);
       mainWindow.webContents.send('server-stopped', code);
     });
 
