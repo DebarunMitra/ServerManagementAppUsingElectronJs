@@ -1,0 +1,29 @@
+{
+  "name": "servermanagementappusingelectronjs",
+  "version": "1.0.0",
+  "description": "",
+  "main": "main.js",
+  "scripts": {
+    "package": "electron-packager .",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git@github.com-DebarunMitra:DebarunMitra/ServerManagementAppUsingElectronJs.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "electron": "^24.3.1",
+    "electron-packager": "^17.1.1"
+  },
+  "dependencies": {
+    "child_process": "^1.0.2",
+    "express": "^4.18.2",
+    "http": "^0.0.1-security",
+    "ip": "^1.1.8",
+    "path": "^0.12.7",
+    "url": "^0.11.0"
+  }
+}
