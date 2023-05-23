@@ -1,12 +1,10 @@
 const express = require('express');
 const path = require('path');
 const http = require('http');
-const ip = require('ip');
 const os = require('os');
 
 const app = express();
 let hostname = '127.0.0.1'; //localhost
-// const networkHostname = ip.address();
 const port = 3005; // Change the port number if needed
 app.use(express.json());
 
@@ -29,7 +27,6 @@ function getWiFiIPAddress() {
   if (wifiInterface) {
     const wifiAddressInfo = wifiInterface.find(address => address.family === 'IPv4');
     if (wifiAddressInfo) {
-      // console.log(wifiAddressInfo.address);
       return {
         address: wifiAddressInfo.address,
         netmask: wifiAddressInfo.netmask
@@ -47,11 +44,6 @@ hostname = wifiIP.address;
 
 server.listen(port, hostname);
 server.on('listening', function() {
-    // console.log('Wi-Fi IP address:', wifiIPAddress);
     console.log(`Network host - http://${wifiIP.address}:${port}/` );
 });
 
-// server.listen(port, networkHostname);
-// server.on('listening', function() {
-//     console.log(`Network Host: Express server started on port %s at %s http://${server.address().address}:${server.address().port}` );
-// });
