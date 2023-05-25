@@ -12,7 +12,8 @@ function createWindow() {
     height: 600,
     webPreferences: {
       nodeIntegration: true,
-      contextIsolation: false
+      contextIsolation: false,
+      preload: path.join(__dirname, 'preload.js')
     }
   });
 
@@ -30,6 +31,9 @@ function createWindow() {
 function startServer() {
   console.log('startServer called');
   serverProcess = spawn('node', ['network-server.js']);
+  // serverProcess = spawn(process.execPath, [ path.join(__dirname, 'network-server.js'), 'args'], {
+  //   stdio: 'pipe'
+  // });
 
   serverProcess.stdout.on('data', (data) => {
     // Display the server output in the GUI
