@@ -42,15 +42,10 @@ ipcRenderer.on('user-details', (event, data) => {
   const jsonData = JSON.parse(data);
   UserDataOutputContainer.innerText = "";
   UserDataOutputContainer.innerText = `${jsonData.length} User Data Available`;
-<<<<<<< HEAD
-  console.log('List API: http://'+mainIpAddress.split('//')[1].split('/')[0]+'/pogo/user/list');
-  console.log(jsonData);
-=======
   if(jsonData.length>0){
     console.log('List API: http://'+mainIpAddress.split('//')[1].split('/')[0]+'/pogo/user/list');
     console.log(jsonData);
   }
->>>>>>> b6afa96 (List API added in console)
 })
 
 
