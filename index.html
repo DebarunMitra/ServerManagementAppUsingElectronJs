@@ -25,7 +25,7 @@
         margin: 1rem;
     }
 
-    #output{
+    #output, #userDataOutput{
         margin: 0.5rem;
     }
   </style>
@@ -37,14 +37,16 @@
     <div id="output-container">
       <div id="qrcode"></div>
       <pre id="output"></pre>
+      <pre id="userDataOutput"></pre>
     </div>
     <div id="buttons">
       <button id="start-btn">Start Server</button>
       <button id="stop-btn">Stop Server</button>
+      <button id="check-activity-btn">Check Activity Data 🔄</button>
+    </div>
+    <div>
     </div>
   </div>
-
   <script src="./renderer.js"></script>
-  <!-- <script src="build/bundle.js"></script> -->
 </body>
 </html>

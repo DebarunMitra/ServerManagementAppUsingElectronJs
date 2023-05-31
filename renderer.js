@@ -3,6 +3,9 @@ const { ipcRenderer } = require('electron');
 const startButton = document.getElementById('start-btn');
 const stopButton = document.getElementById('stop-btn');
 const outputContainer = document.getElementById('output');
+const UserDataOutputContainer = document.getElementById('userDataOutput');
+const getUserValueButton = document.getElementById('check-activity-btn');
+let mainIpAddress = "http://127.0.0.1:3005";
 
 // const qrcode = new QRCode(document.getElementById("qrcode"), {
 //   text: "http://127.0.0.1:3005",
@@ -20,9 +23,11 @@ stopButton.addEventListener('click', () => {
 });
 
 ipcRenderer.on('server-output', (event, data) => {
+  outputContainer.innerText = "";
   outputContainer.innerText += data;
   let idAddress = data.split('-')[1]
-  console.log(idAddress);
+  // console.log(idAddress);
+  mainIpAddress = idAddress;
   const qrcode = new QRCode(document.getElementById("qrcode"), {
     text: idAddress || "http://127.0.0.1:3005",
     width: 128,
@@ -33,5 +38,20 @@ ipcRenderer.on('server-output', (event, data) => {
 ipcRenderer.on('server-closed', (event, code) => {
   document.getElementById("qrcode").innerHTML = "";
   document.getElementById("output").innerHTML = "";
+  UserDataOutputContainer.innerText = "";
   outputContainer.innerText += `Server Closed!\n`;
 });
+
+getUserValueButton.addEventListener('click', () => {
+  ipcRenderer.send('get-user-data');
+});
+
+ipcRenderer.on('user-details', (event, data) => {
+  const jsonData = JSON.parse(data);
+  UserDataOutputContainer.innerText = "";
+  UserDataOutputContainer.innerText = `${jsonData.length} User Data Available`;
+  console.log(jsonData);
+})
+
+
+

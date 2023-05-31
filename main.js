@@ -2,6 +2,7 @@ const { app, BrowserWindow } = require('electron');
 const { spawn } = require('child_process');
 const path = require('path');
 const url = require('url');
+const fs = require('fs')
 
 let mainWindow;
 let serverProcess; // Declare serverProcess variable outside of functions
@@ -13,7 +14,7 @@ function createWindow() {
     webPreferences: {
       nodeIntegration: true,
       contextIsolation: false,
-      preload: path.join(__dirname, 'preload.js')
+      // preload: path.join(__dirname, 'preload.js')
     }
   });
 
@@ -65,6 +66,16 @@ function stopServer() {
   }
 }
 
+function getUserDetails() {
+  try{
+    console.log('getUserDetails');
+    const jsonData = fs.readFileSync('users.json')
+    mainWindow.webContents.send('user-details', jsonData.toString()); 
+  }catch(error){
+    console.log(error.message)
+  }  
+}
+
 
 app.on('ready', createWindow);
 
@@ -90,3 +101,7 @@ ipcMain.on('start-server', () => {
 ipcMain.on('stop-server', () => {
   stopServer();
 });
+
+ipcMain.on('get-user-data', () => {
+  getUserDetails();
+})
