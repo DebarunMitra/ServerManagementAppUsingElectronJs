@@ -8,4 +8,4 @@
 5. Start the application by `electron .` command.
 
 ### Screenshot
-![Desktop-App](./screenshots/sma-img-main.PNG)
+![Desktop-App](./screenshots/sma-img-main.png)
